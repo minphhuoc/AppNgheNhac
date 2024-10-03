@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#020202"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:id="@+id/scrollview1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="#020202"
+        tools:context=".MainActivity"
+        android:layout_above="@id/playerview">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/sf1"
+                android:text="Lựa Chọn Hàng Đầu Cho Bạn"
+                android:textColor="@color/white"
+                android:textSize="25sp">
+
+            </TextView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="276dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/sf1"
+                        android:text="TOP HIT"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/categories_recycle_view3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="225dp"
+                        android:paddingTop="5dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="5dp"
+                   android:fontFamily="@font/sf1"
+                   android:text="Top Bảng Xếp Hạng"
+                   android:textColor="@color/white"
+                   android:textSize="18sp"
+                   >
+
+               </TextView>
+
+
+               <FrameLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+               </FrameLayout>
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/categories_recycle_view4"
+                   android:layout_width="match_parent"
+                   android:layout_height="200dp"
+                   android:orientation="horizontal">
+
+               </androidx.recyclerview.widget.RecyclerView>
+
+           </LinearLayout>
+
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/sf3"
+                android:text="Mới Phát Hành"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categories_recycle_view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal">
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="30dp"-->
+<!--                            android:background="@color/black"-->
+
+<!--                            android:orientation="vertical"-->
+<!--                            app:cardElevation="20dp">-->
+
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="120dp"-->
+<!--                                android:layout_height="120dp"-->
+<!--                                android:src="@drawable/pqbv">-->
+
+<!--                            </ImageView>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:layout_marginBottom="-5dp"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:fontFamily="@font/sf4"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:text="Phú Qúy Bò Viên"-->
+<!--                                android:textColor="@color/white">-->
+
+<!--                            </TextView>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:fontFamily="@font/sf3"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:text="Anh Phan, Tùng Chùa &amp; "-->
+<!--                                android:textColor="#636362"-->
+<!--                                android:textStyle="bold">-->
+
+<!--                            </TextView>-->
+
+
+<!--                        </LinearLayout>-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="30dp"-->
+<!--                            android:background="@color/black"-->
+
+<!--                            android:orientation="vertical"-->
+<!--                            app:cardElevation="20dp">-->
+
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="120dp"-->
+<!--                                android:layout_height="120dp"-->
+<!--                                android:src="@drawable/mck">-->
+
+<!--                            </ImageView>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:layout_marginBottom="-5dp"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:fontFamily="@font/sf4"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:text="99%"-->
+<!--                                android:textColor="@color/white">-->
+
+<!--                            </TextView>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:fontFamily="@font/sf3"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:text="RPT MCK"-->
+<!--                                android:textColor="#636362"-->
+<!--                                android:textStyle="bold">-->
+
+<!--                            </TextView>-->
+
+
+<!--                        </LinearLayout>-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="30dp"-->
+<!--                            android:background="@color/black"-->
+
+<!--                            android:orientation="vertical"-->
+<!--                            app:cardElevation="20dp">-->
+
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="120dp"-->
+<!--                                android:layout_height="120dp"-->
+<!--                                android:src="@drawable/ndnc">-->
+
+<!--                            </ImageView>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:layout_marginBottom="-5dp"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:fontFamily="@font/sf4"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:text="Nội Dung Nhạy Cảm - Part 1 - EP"-->
+<!--                                android:textColor="@color/white">-->
+
+<!--                            </TextView>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:fontFamily="@font/sf3"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:text="24k.Right"-->
+<!--                                android:textColor="#636362"-->
+<!--                                android:textStyle="bold">-->
+
+<!--                            </TextView>-->
+
+
+<!--                        </LinearLayout>-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="30dp"-->
+<!--                            android:background="@color/black"-->
+
+<!--                            android:orientation="vertical"-->
+<!--                            app:cardElevation="20dp">-->
+
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="120dp"-->
+<!--                                android:layout_height="120dp"-->
+<!--                                android:src="@drawable/mono">-->
+
+<!--                            </ImageView>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:layout_marginBottom="-5dp"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:fontFamily="@font/sf4"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:text="ĐẸP - EP"-->
+<!--                                android:textColor="@color/white">-->
+
+<!--                            </TextView>-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:ellipsize="end"-->
+<!--                                android:fontFamily="@font/sf3"-->
+<!--                                android:maxLines="1"-->
+<!--                                android:text="MONO"-->
+<!--                                android:textColor="#636362"-->
+<!--                                android:textStyle="bold">-->
+
+<!--                            </TextView>-->
+
+
+<!--                        </LinearLayout>-->
+
+<!--                    </LinearLayout>-->
+
+                </HorizontalScrollView>
+
+            </ScrollView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal" />
+
+            </ScrollView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/thanhuser"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+
+
+        <LinearLayout
+            android:layout_width="266dp"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/boxUser"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+            android:layout_width="45dp"
+            android:layout_height="17dp"
+            android:src="@drawable/playicon">
+
+             </ImageView>
+            <TextView
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf3"
+                android:gravity="center_horizontal"
+                android:text="Nghe Ngay"
+                android:textColor="@color/white"
+                android:textSize="11dp">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/boxUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icUser"
+                android:layout_width="45dp"
+                android:layout_height="17dp"
+                android:src="@drawable/user2">
+            </ImageView>
+
+
+            <TextView
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf3"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="User"
+                android:textSize="11dp">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lineartimkiem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/searchicon"
+                android:layout_width="45dp"
+                android:layout_height="17dp"
+                android:src="@drawable/searchicon">
+            </ImageView>
+
+            <TextView
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf3"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="Tìm kiếm"
+                android:textSize="11dp">
+
+            </TextView>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/playerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/thanhuser"
+        android:background="@android:color/transparent"
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@id/song_cover_image_view2"/>
+        <TextView
+            android:id="@+id/song_title_text_view2"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/song_cover_image_view2"
+            android:paddingStart="16dp"
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:text="Now Playing"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+
+</RelativeLayout>
+
+

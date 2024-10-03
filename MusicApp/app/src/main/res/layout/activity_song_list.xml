@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/black"
+    tools:context=".SongListActivity">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/left2"
+        android:id="@+id/back">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/cover_img_view_2"
+        android:layout_width="298dp"
+        android:layout_height="282dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên bài hát"
+        android:fontFamily="@font/sf1"
+
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:id="@+id/name_text_view_2"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên ca sĩ"
+        android:textColor="#AF1243"
+        android:fontFamily="@font/sf3"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:id="@+id/name_title_2"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/song_list_recycler_view2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
