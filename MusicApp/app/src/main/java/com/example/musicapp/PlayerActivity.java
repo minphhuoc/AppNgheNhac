@@ -3,6 +3,7 @@ package com.example.musicapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.OptIn;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.media3.common.Player;
@@ -25,18 +26,24 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.musicapp.databinding.ActivityPlayerBinding;
 import com.example.musicapp.model.CategoryModel4;
+import com.example.musicapp.model.PlaylistModel;
 import com.example.musicapp.model.SongModel;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -68,7 +75,7 @@ public class PlayerActivity extends AppCompatActivity {
         iconPlay = getResources().getDrawable(R.drawable.iconplay);
         iconPause = getResources().getDrawable(R.drawable.iconpause);
         SongModel currentSong = MyExoplayer.getCurrentSong();
-
+        binding.iconsadd.setOnClickListener(v -> showAddToPlaylistDialog());
         addControl();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +187,110 @@ public class PlayerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void showAddToPlaylistDialog() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Toast.makeText(this, "Vui lòng đăng nhập để thêm vào playlist", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        FirebaseFirestore.getInstance().collection("playlists")
+                .whereEqualTo("createdBy", user.getUid())
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<PlaylistModel> playlists = queryDocumentSnapshots.toObjects(PlaylistModel.class);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    String[] options = new String[playlists.size() + 1];
+                    for (int i = 0; i < playlists.size(); i++) {
+                        options[i] = playlists.get(i).getName();
+                    }
+                    options[playlists.size()] = "Tạo playlist mới";
+
+                    builder.setTitle("Thêm vào playlist")
+                            .setItems(options, (dialog, which) -> {
+                                if (which == playlists.size()) {
+                                    showCreatePlaylistDialog();
+                                } else {
+                                    PlaylistModel selectedPlaylist = playlists.get(which);
+                                    addSongToPlaylist(selectedPlaylist.getPlaylistId());
+                                }
+                            });
+                    builder.create().show();
+                });
+    }
+    private void showCreatePlaylistDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final EditText input = new EditText(this);
+        input.setHint("Nhập tên playlist");
+
+        builder.setTitle("Tạo playlist mới")
+                .setView(input)
+                .setPositiveButton("Tạo", (dialog, which) -> {
+                    String playlistName = input.getText().toString().trim();
+                    if (!playlistName.isEmpty()) {
+                        createPlaylist(playlistName);
+                    }
+                })
+                .setNegativeButton("Hủy", null);
+        builder.create().show();
+    }
+    @OptIn(markerClass = UnstableApi.class) private void createPlaylist(String name) {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        PlaylistModel newPlaylist = new PlaylistModel();
+        newPlaylist.setName(name);
+        newPlaylist.setCreatedBy(userId);
+
+        FirebaseFirestore.getInstance().collection("playlists")
+                .add(newPlaylist)
+                .addOnSuccessListener(documentReference -> {
+                    String playlistId = documentReference.getId();
+                    newPlaylist.setPlaylistId(playlistId);
+
+                    // Cập nhật lại playlistId trong Firestore
+                    documentReference.update("playlistId", playlistId)
+                            .addOnSuccessListener(aVoid -> {
+                                // Thêm bài hát vào playlist
+                                addSongToPlaylist(playlistId);
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e("PlayerActivity", "Error updating playlistId", e);
+                            });
+                });
+    }
+
+    @OptIn(markerClass = UnstableApi.class)
+    private void addSongToPlaylist(String playlistId) {
+        if (playlistId == null || playlistId.isEmpty()) {
+            Log.e("PlayerActivity", "playlistId null or empty");
+            return;
+        }
+
+        SongModel currentSong = MyExoplayer.getCurrentSong();
+        if (currentSong == null) {
+            Log.e("PlayerActivity", "currentSong is null");
+            return;
+        }
+
+        String songId = currentSong.getId2();
+        if (songId == null || songId.isEmpty()) {
+            Log.e("PlayerActivity", "songId is null or empty");
+            return;
+        }
+
+        FirebaseFirestore.getInstance().collection("playlists")
+                .document(playlistId)
+                .update("songIds", FieldValue.arrayUnion(songId))
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Đã thêm bài hát vào playlist", Toast.LENGTH_SHORT).show();
+                    Log.d("PlayerActivity", "Song added successfully: " + songId);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Không thể thêm bài hát", Toast.LENGTH_SHORT).show();
+                    Log.e("PlayerActivity", "Error adding song", e);
+                });
     }
     public String millisecondsToString(int time){
         String elapsedTime ="";

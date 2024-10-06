@@ -28,10 +28,9 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-
-    }
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
     buildFeatures {
         viewBinding = true
     }
@@ -52,5 +51,4 @@ dependencies {
     implementation("androidx.media3:media3-ui:1.2.1")
     implementation ("androidx.palette:palette:1.0.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
 }
